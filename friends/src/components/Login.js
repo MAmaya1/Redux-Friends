@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Loader from 'react-loader-spinner';
 
 import {login} from '../actions';
 
@@ -45,11 +46,27 @@ class Login extends React.Component {
                         value={this.state.credentials.password}
                         onChange={this.handleChange}
                     />
-                    <button onClick={this.login}>Log in</button>
+                    {this.props.error && (
+                        <p>{this.props.error}</p>
+                    )}
+                    <button onClick={this.login}>
+                        {this.props.loggingIn ? (
+                            <Loader type="ThreeDots" color="#somecolor" height={20} width={20} />
+                        ) : (
+                            'Log in'
+                        )}
+                    </button>
                 </form>
             </div>
         )
     }
 }
 
-export default connect(null, {login})(Login);
+const mapStateToProps = state => {
+    return {
+        loggingIn: state.loggingIn,
+        error: state.error
+    }
+}
+
+export default connect(mapStateToProps, {login})(Login);

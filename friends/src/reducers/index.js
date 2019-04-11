@@ -20,6 +20,28 @@ const initialState = {
 
 function reducer(state = initialState, action) {
     switch (action.type) {
+        case LOGIN_START:
+            return {
+                ...state,
+                error: null,
+                fetchingFriends: false,
+                loggingIn: true
+            }
+
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                loggingIn: false
+            }
+
+        case LOGIN_FAILURE:
+            return {
+                ...state,
+                error: 'Incorrect username and/or password',
+                loggingIn: false
+            }
+
         case FETCH_FRIENDS_START:
             return {
                 ...state,
