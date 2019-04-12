@@ -5,6 +5,18 @@ import FriendsList from '../components/FriendsList';
 
 import {getFriends} from '../actions';
 
+import styled from 'styled-components';
+
+// Styled Components
+
+const StyledView = styled.div`
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+`
+
+// FriendsList View
+
 class FriendsListView extends React.Component {
 
     componentDidMount() {
@@ -13,7 +25,7 @@ class FriendsListView extends React.Component {
 
     render() {
         return (
-            <div className="friends-list-view">
+            <StyledView>
                 <h1>Friends List</h1>
                 {this.props.fetchingFriends && (
                     <p>Loading...</p>
@@ -24,7 +36,7 @@ class FriendsListView extends React.Component {
                 {this.props.error && (
                     alert(this.props.error)
                 )}
-            </div>
+            </StyledView>
         )
     }
 }

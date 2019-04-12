@@ -4,6 +4,63 @@ import Loader from 'react-loader-spinner';
 
 import {login} from '../actions';
 
+import styled from 'styled-components';
+
+// Styled Components
+
+const StyledLogin = styled.div`
+    margin-top: 200px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+
+    h1 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+`
+const Form = styled.form`
+    display: flex;;
+    flex-direction: column;
+
+    input {
+        width: 50%;
+        margin: 3px auto;
+        padding: 7px;
+        border-radius: 10px;
+
+        @media (max-width: 500px) {
+            width: 80%;
+        }
+    }
+
+    button {
+        width: 20%;
+        height: 40px;
+        margin: 30px auto;
+        border-radius: 10px;
+
+        @media (max-width: 500px) {
+            width: 50%;
+        }
+
+        &:hover {
+            background: white;
+            transition: all 200ms ease;
+        }
+    }
+`
+
+const ErrorMessage = styled.p`
+    position: absolute;
+    color: red;
+    font-size: 0.8rem
+    margin: 80px 158px;
+    padding: 0;
+`
+
+// Login Component Constructor
+
 class Login extends React.Component {
     state = {
         credentials: {
@@ -31,9 +88,9 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="login">
+            <StyledLogin>
                 <h1>Login</h1>
-                <form>
+                <Form>
                     <input
                         type="text"
                         name="username"
@@ -47,7 +104,7 @@ class Login extends React.Component {
                         onChange={this.handleChange}
                     />
                     {this.props.error && (
-                        <p>{this.props.error}</p>
+                        <ErrorMessage>{this.props.error}</ErrorMessage>
                     )}
                     <button onClick={this.login}>
                         {this.props.loggingIn ? (
@@ -56,8 +113,8 @@ class Login extends React.Component {
                             'Log in'
                         )}
                     </button>
-                </form>
-            </div>
+                </Form>
+            </StyledLogin>
         )
     }
 }
