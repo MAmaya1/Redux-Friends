@@ -54,7 +54,7 @@ const Form = styled.form`
 const ErrorMessage = styled.p`
     color: red;
     font-size: 0.8rem
-    margin: 0 158px;
+    text-align: center;
 `
 
 // Login Component Constructor
