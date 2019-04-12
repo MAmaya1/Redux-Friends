@@ -13,7 +13,8 @@ const initialState = {
     friends: [],
     loggingIn: false,
     fetchingFriends: false,
-    error: null
+    loginError: null,
+    loadError: null
 }
 
 // Reducer Function
@@ -23,7 +24,7 @@ function reducer(state = initialState, action) {
         case LOGIN_START:
             return {
                 ...state,
-                error: null,
+                loginError: null,
                 fetchingFriends: false,
                 loggingIn: true
             }
@@ -31,14 +32,14 @@ function reducer(state = initialState, action) {
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                error: null,
+                loginError: null,
                 loggingIn: false
             }
 
         case LOGIN_FAILURE:
             return {
                 ...state,
-                error: 'Incorrect username and/or password',
+                loginError: 'Incorrect username and/or password',
                 loggingIn: false
             }
 
@@ -46,7 +47,7 @@ function reducer(state = initialState, action) {
             return {
                 ...state,
                 fetchingFriends: true,
-                error: null
+                loadError: null
             }
 
         case FETCH_FRIENDS_SUCCESS:
@@ -54,14 +55,14 @@ function reducer(state = initialState, action) {
                 ...state,
                 fetchingFriends: false,
                 friends: action.payload,
-                error: null
+                loadError: null
             }
         
         case FETCH_FRIENDS_FAILURE:
             return {
                 ...state,
                 fetchingFriends: false,
-                error: action.payload
+                loadError: action.payload
             }
 
         default:

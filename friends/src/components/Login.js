@@ -37,7 +37,7 @@ const Form = styled.form`
     button {
         width: 20%;
         height: 40px;
-        margin: 30px auto;
+        margin: 20px auto;
         border-radius: 10px;
 
         @media (max-width: 500px) {
@@ -52,11 +52,9 @@ const Form = styled.form`
 `
 
 const ErrorMessage = styled.p`
-    position: absolute;
     color: red;
     font-size: 0.8rem
-    margin: 80px 158px;
-    padding: 0;
+    margin: 0 158px;
 `
 
 // Login Component Constructor
@@ -103,8 +101,8 @@ class Login extends React.Component {
                         value={this.state.credentials.password}
                         onChange={this.handleChange}
                     />
-                    {this.props.error && (
-                        <ErrorMessage>{this.props.error}</ErrorMessage>
+                    {this.props.loginError && (
+                        <ErrorMessage>{this.props.loginError}</ErrorMessage>
                     )}
                     <button onClick={this.login}>
                         {this.props.loggingIn ? (
@@ -122,7 +120,7 @@ class Login extends React.Component {
 const mapStateToProps = state => {
     return {
         loggingIn: state.loggingIn,
-        error: state.error
+        loginError: state.loginError
     }
 }
 

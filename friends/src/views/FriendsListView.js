@@ -33,8 +33,8 @@ class FriendsListView extends React.Component {
                 {this.props.friends && (
                     <FriendsList friends={this.props.friends}/>
                 )}
-                {this.props.error && (
-                    alert(this.props.error)
+                {this.props.loadError && (
+                    <p>Cannot load friends :(</p>
                 )}
             </StyledView>
         )
@@ -45,7 +45,7 @@ const mapStateToProps = state => {
     return {
         friends: state.friends,
         fetchingFriends: state.fetchingFriends,
-        error: state.error
+        loadError: state.loadError
     }
 }
 
